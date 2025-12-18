@@ -3,9 +3,6 @@ using System.Text.Json;
 
 namespace FoodOrderingSystem.Middleware;
 
-/// <summary>
-/// Глобальный middleware обработки исключений
-/// </summary>
 public class ExceptionHandlingMiddleware
 {
     private readonly RequestDelegate _next;

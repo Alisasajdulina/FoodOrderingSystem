@@ -8,11 +8,13 @@ namespace FoodOrderingSystem.Models
 
         [Required]
         public int OrderId { get; set; }
-        public Order Order { get; set; }
+
+        public Order Order { get; set; } = null!;
 
         [Required]
         public int DishId { get; set; }
-        public Dish Dish { get; set; }
+
+        public Dish Dish { get; set; } = null!;
 
         [Required]
         [Range(1, 100)]

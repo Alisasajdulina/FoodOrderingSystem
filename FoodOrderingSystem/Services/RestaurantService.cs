@@ -4,10 +4,6 @@ using FoodOrderingSystem.Models;
 using FoodOrderingSystem.Repositories;
 
 namespace FoodOrderingSystem.Services;
-
-/// <summary>
-/// Сервис бизнес-логики ресторана
-/// </summary>
 public class RestaurantService
 {
     private readonly IRepository<Restaurant> _repository;
@@ -20,10 +16,6 @@ public class RestaurantService
         _repository = repository;
         _mapper = mapper;
     }
-
-    /// <summary>
-    /// Получить список ресторанов
-    /// </summary>
     public async Task<IEnumerable<RestaurantDto>> GetAllAsync()
     {
         var entities = await _repository.GetAllAsync();

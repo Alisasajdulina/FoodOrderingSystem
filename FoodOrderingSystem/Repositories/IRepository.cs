@@ -1,8 +1,6 @@
 ﻿namespace FoodOrderingSystem.Repositories;
 
-/// <summary>
-/// Универсальный интерфейс репозитория
-/// </summary>
+
 public interface IRepository<T> where T : class
 {
     Task<IEnumerable<T>> GetAllAsync();

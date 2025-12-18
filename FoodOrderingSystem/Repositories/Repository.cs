@@ -5,9 +5,6 @@ using System.Collections.Generic;
 
 namespace FoodOrderingSystem.Repositories;
 
-/// <summary>
-/// Реализация универсального репозитория
-/// </summary>
 public class Repository<T> : IRepository<T> where T : class
 {
     private readonly ApplicationDbContext _context;
