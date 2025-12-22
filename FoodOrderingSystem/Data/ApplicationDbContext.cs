@@ -1,13 +1,16 @@
-﻿using Microsoft.EntityFrameworkCore;
-using FoodOrderingSystem.Models;
+﻿using FoodOrderingSystem.Models;
+using Microsoft.EntityFrameworkCore;
 
-namespace FoodOrderingSystem.Data;
-
-public class ApplicationDbContext : DbContext
+namespace FoodOrderingSystem.Data
 {
-    public ApplicationDbContext(
-        DbContextOptions<ApplicationDbContext> options)
-        : base(options) { }
+    public class ApplicationDbContext : DbContext
+    {
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+            : base(options)
+        {
+        }
 
-    public DbSet<Restaurant> Restaurants { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<Order> Orders { get; set; }
+    }
 }
