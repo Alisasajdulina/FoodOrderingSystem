@@ -2,14 +2,12 @@
 
 namespace FoodOrderingSystem.Services.Interfaces
 {
-    /// <summary>
-    /// Сервис для работы с заказами
-    /// </summary>
     public interface IOrderService
     {
-        /// <summary>
-        /// Создать новый заказ
-        /// </summary>
         Task<OrderDto> CreateAsync(CreateOrderDto dto);
+        Task<IEnumerable<OrderDto>> GetAllAsync();
+        Task<OrderDto> GetByIdAsync(int id);
+        Task<OrderDto> UpdateAsync(int id, UpdateOrderDto dto);
+        Task DeleteAsync(int id);
     }
 }

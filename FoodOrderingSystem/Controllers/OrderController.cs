@@ -1,16 +1,16 @@
-﻿using FoodOrderingSystem.DTO;
+﻿using FoodOrderingSystem.DTO.Order;
 using FoodOrderingSystem.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FoodOrderingSystem.Controllers
 {
     [ApiController]
-    [Route("api/restaurants")]
-    public class RestaurantController : ControllerBase
+    [Route("api/orders")]
+    public class OrderController : ControllerBase
     {
-        private readonly IRestaurantService _service;
+        private readonly IOrderService _service;
 
-        public RestaurantController(IRestaurantService service)
+        public OrderController(IOrderService service)
         {
             _service = service;
         }
@@ -28,13 +28,13 @@ namespace FoodOrderingSystem.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(CreateRestaurantDto dto)
+        public async Task<IActionResult> Create(CreateOrderDto dto)
         {
             return Ok(await _service.CreateAsync(dto));
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, UpdateRestaurantDto dto)
+        public async Task<IActionResult> Update(int id, UpdateOrderDto dto)
         {
             return Ok(await _service.UpdateAsync(id, dto));
         }

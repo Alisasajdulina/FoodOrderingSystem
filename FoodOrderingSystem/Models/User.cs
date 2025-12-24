@@ -4,10 +4,25 @@ namespace FoodOrderingSystem.Models
 {
     public class User
     {
+        [Key]
         public int Id { get; set; }
 
-        public string Email { get; set; } = null!;
-        public string Phone { get; set; } = null!;
-    }
+        [Required]
+        [StringLength(100)]
+        public string Name { get; set; } = string.Empty;
 
+        [Required]
+        [EmailAddress]
+        [StringLength(100)]
+        public string Email { get; set; } = string.Empty;
+
+        [StringLength(200)]
+        public string? Address { get; set; }
+
+        [StringLength(20)]
+        public string? Phone { get; set; }
+
+        // Навигационные свойства
+        public virtual ICollection<Order>? Orders { get; set; } = new List<Order>();
+    }
 }

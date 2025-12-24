@@ -2,7 +2,7 @@
 {
     public class CreateOrderDto
     {
-        public List<int> ProductIds { get; set; } = new();
+        public required List<int> ProductIds { get; set; }
+        public required int UserId { get; set; }
     }
-
 }

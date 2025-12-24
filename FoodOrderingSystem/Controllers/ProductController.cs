@@ -4,9 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace FoodOrderingSystem.Controllers
 {
-    /// <summary>
-    /// Контроллер для работы с продуктами
-    /// </summary>
     [ApiController]
     [Route("api/products")]
     public class ProductController : ControllerBase
@@ -18,23 +15,35 @@ namespace FoodOrderingSystem.Controllers
             _service = service;
         }
 
-        /// <summary>
-        /// Получить список всех продуктов
-        /// </summary>
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
             return Ok(await _service.GetAllAsync());
         }
 
-        /// <summary>
-        /// Создать новый продукт
-        /// </summary>
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById(int id)
+        {
+            return Ok(await _service.GetByIdAsync(id));
+        }
+
         [HttpPost]
         public async Task<IActionResult> Create(CreateProductDto dto)
         {
             return Ok(await _service.CreateAsync(dto));
         }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update(int id, UpdateProductDto dto)
+        {
+            return Ok(await _service.UpdateAsync(id, dto));
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            await _service.DeleteAsync(id);
+            return NoContent();
+        }
     }
 }
- 

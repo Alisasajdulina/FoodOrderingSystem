@@ -1,17 +1,37 @@
 ﻿using AutoMapper;
-using FoodOrderingSystem.DTOs;
+using FoodOrderingSystem.DTO;
+using FoodOrderingSystem.DTO.Order;
+using FoodOrderingSystem.DTO.Product;
 using FoodOrderingSystem.Models;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
-namespace FoodOrderingSystem.Profiles;
-
-/// <summary>
-/// Профиль маппинга AutoMapper
-/// </summary>
-public class MappingProfile : Profile
+namespace FoodOrderingSystem.Profiles
 {
-    public MappingProfile()
+    public class MappingProfile : Profile
     {
-        CreateMap<Restaurant, RestaurantDto>().ReverseMap();
+        public MappingProfile()
+        {
+            CreateMap<Product, ProductDto>()
+                .ForMember(dest => dest.RestaurantName,
+                    opt => opt.MapFrom(src => src.Restaurant != null ? src.Restaurant.Name : null));
+
+            CreateMap<CreateProductDto, Product>();
+
+            CreateMap<UpdateProductDto, Product>()
+                .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
+
+            CreateMap<Restaurant, RestaurantDto>();
+            CreateMap<CreateRestaurantDto, Restaurant>();
+
+            CreateMap<UpdateRestaurantDto, Restaurant>()
+                .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
+
+            CreateMap<Order, OrderDto>();
+
+            CreateMap<OrderItem, OrderItemDto>()
+                .ForMember(dest => dest.ProductName,
+                    opt => opt.MapFrom(src => src.Product != null ? src.Product.Name : string.Empty));
+
+            CreateMap<CreateOrderDto, Order>();
+        }
     }
 }
